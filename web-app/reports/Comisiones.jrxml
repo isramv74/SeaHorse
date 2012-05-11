@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte de Comisiones" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="IMAGES_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA["/Users/israel/development/nikko/trunk/SeaHorse/web-app/images/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="USER_NAME" class="java.lang.String"/>
+	<field name="travelAgentName" class="java.lang.String"/>
+	<field name="iataCorpNo" class="java.lang.String"/>
+	<field name="guestFirstName" class="java.lang.String"/>
+	<field name="address1" class="java.lang.String"/>
+	<field name="address2" class="java.lang.String"/>
+	<field name="address3" class="java.lang.String"/>
+	<field name="address4" class="java.lang.String"/>
+	<field name="zipCode" class="java.lang.String"/>
+	<field name="city" class="java.lang.String"/>
+	<field name="state" class="java.lang.String"/>
+	<field name="country" class="java.lang.String"/>
+	<field name="guestLastName" class="java.lang.String"/>
+	<field name="room" class="java.lang.String"/>
+	<field name="arrival" class="java.util.Date"/>
+	<field name="departure" class="java.util.Date"/>
+	<field name="rateAmount" class="java.math.BigDecimal"/>
+	<field name="commissionableRevenue" class="java.math.BigDecimal"/>
+	<field name="nights" class="java.lang.Integer"/>
+	<field name="commAmt" class="java.math.BigDecimal"/>
+	<field name="notas" class="java.lang.String"/>
+	<field name="grossCommAmt" class="java.math.BigDecimal"/>
+	<field name="vatAmount" class="java.math.BigDecimal"/>
+	<variable name="guestName" class="java.lang.String">
+		<variableExpression><![CDATA[$F{guestLastName}+", "+ $F{guestFirstName}]]></variableExpression>
+	</variable>
+	<variable name="page" class="java.lang.String">
+		<variableExpression><![CDATA["Page: "+$V{PAGE_NUMBER}]]></variableExpression>
+	</variable>
+	<variable name="user" class="java.lang.String">
+		<variableExpression><![CDATA["User: "+$P{USER_NAME}]]></variableExpression>
+	</variable>
+	<variable name="date" class="java.lang.String">
+		<variableExpression><![CDATA["Date: "+new Date()]]></variableExpression>
+	</variable>
+	<variable name="commTA" class="java.math.BigDecimal" resetType="Group" resetGroup="TravelAgent" calculation="Sum">
+		<variableExpression><![CDATA[$F{commAmt}]]></variableExpression>
+	</variable>
+	<variable name="nochesT" class="java.math.BigDecimal" resetType="Group" resetGroup="TravelAgent" calculation="Sum">
+		<variableExpression><![CDATA[$F{nights}]]></variableExpression>
+	</variable>
+	<variable name="revenueT" class="java.math.BigDecimal" resetType="Group" resetGroup="TravelAgent" calculation="Sum">
+		<variableExpression><![CDATA[$F{commissionableRevenue}]]></variableExpression>
+	</variable>
+	<variable name="gCommT" class="java.math.BigDecimal" resetType="Group" resetGroup="TravelAgent" calculation="Sum">
+		<variableExpression><![CDATA[$F{grossCommAmt}]]></variableExpression>
+	</variable>
+	<variable name="vatT" class="java.math.BigDecimal" resetType="Group" resetGroup="TravelAgent" calculation="Sum">
+		<variableExpression><![CDATA[$F{vatAmount}]]></variableExpression>
+	</variable>
+	<group name="TravelAgent">
+		<groupExpression><![CDATA[$F{iataCorpNo}]]></groupExpression>
+		<groupHeader>
+			<band height="98">
+				<textField>
+					<reportElement x="12" y="15" width="202" height="12"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{travelAgentName}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="252" y="15" width="100" height="12"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{iataCorpNo}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="214" y="15" width="38" height="12"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[IATA - ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="12" y="26" width="340" height="12"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{address1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="12" y="37" width="340" height="12"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{address2}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="12" y="48" width="340" height="12"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{address3}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="12" y="59" width="340" height="12"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{address4}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="173" y="70" width="100" height="12"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{zipCode}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="12" y="70" width="100" height="12"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{city}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="12" y="81" width="100" height="12"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{state}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="173" y="81" width="100" height="12"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{country}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="95" width="802" height="1"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<line>
+					<reportElement x="352" y="1" width="450" height="1"/>
+				</line>
+				<textField pattern="#,##0.00">
+					<reportElement x="726" y="2" width="76" height="12"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{commTA}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="352" y="2" width="42" height="12"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total]]></text>
+				</staticText>
+				<textField pattern="#,##0.00">
+					<reportElement x="413" y="2" width="54" height="12"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{nochesT}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement x="529" y="2" width="69" height="12"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{revenueT}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement x="598" y="2" width="75" height="12"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{gCommT}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement x="677" y="2" width="49" height="12"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.math.BigDecimal"><![CDATA[$V{vatT}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="323" y="45" width="155" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Commission Report]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="323" y="11" width="155" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hotel Nikko México]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="88" height="79"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{IMAGES_DIR}+"LogoNikko.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="12" y="6" width="76" height="12"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Room]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="133" y="6" width="100" height="12"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Guest Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="317" y="6" width="35" height="12"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Arrival]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="367" y="6" width="61" height="12"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Departure]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="428" y="6" width="39" height="12"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nights]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="467" y="6" width="62" height="12"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rate]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="529" y="6" width="69" height="12"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Revenue]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="742" y="6" width="60" height="12"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Commision]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="25" width="802" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="598" y="6" width="78" height="12"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gross Com Amt]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="677" y="6" width="50" height="12"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vat Amt]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="358" y="0" width="70" height="12"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{departure}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="428" y="0" width="39" height="12"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{nights}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="529" y="0" width="69" height="12"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{commissionableRevenue}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="467" y="0" width="62" height="12"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{rateAmount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="727" y="0" width="75" height="12"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{commAmt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="12" y="0" width="50" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{room}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="62" y="0" width="226" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{guestName}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="598" y="0" width="75" height="12"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{grossCommAmt}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="676" y="0" width="50" height="12"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{vatAmount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="288" y="0" width="70" height="12"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{arrival}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="12">
+			<printWhenExpression><![CDATA[$F{notas} != null]]></printWhenExpression>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="127" y="0" width="325" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{notas}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="12" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="183" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{user}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="195" y="0" width="157" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="702" y="0" width="100" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{page}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
